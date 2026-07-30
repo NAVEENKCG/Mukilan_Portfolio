@@ -166,7 +166,7 @@ export default function WorksPage() {
                 ) : (
                     <motion.div
                         key="detail"
-                        className="fixed inset-0 z-[100] flex flex-row-reverse bg-[#111] overflow-hidden"
+                        className="fixed inset-0 z-[100] bg-[#111] overflow-hidden"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
@@ -174,9 +174,11 @@ export default function WorksPage() {
                     >
                         {/* Info Panel */}
                         <motion.aside
-                            className="bg-[#fafaf8] border-l border-[#e4e2db] flex relative overflow-hidden shrink-0 h-full z-[2]"
-                            animate={{ width: isInfoPanelOpen ? 460 : 64 }}
+                            className="bg-[#fafaf8] border-l border-[#e4e2db] absolute right-0 top-0 bottom-0 overflow-hidden z-[2]"
+                            initial={{ x: 396 }}
+                            animate={{ x: isInfoPanelOpen ? 0 : 396 }}
                             transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+                            style={{ width: 460, willChange: "transform" }}
                         >
                             {/* Trigger Strip */}
                             <div
@@ -254,7 +256,7 @@ export default function WorksPage() {
 
                         {/* Main Image View */}
                         <motion.main
-                            className="relative flex-1 h-full origin-left bg-[#111]"
+                            className="absolute inset-0 origin-left bg-[#111]"
                             animate={{
                                 filter: isInfoPanelOpen ? "brightness(0.7) saturate(0.35)" : "brightness(1) saturate(1)",
                                 scale: isInfoPanelOpen ? 1.018 : 1

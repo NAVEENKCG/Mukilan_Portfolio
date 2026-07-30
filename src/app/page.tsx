@@ -6,6 +6,7 @@ import {
   useMotionValue,
   useSpring,
   useTransform,
+  animate,
 } from "framer-motion";
 
 /* ── Easing ── */
@@ -33,26 +34,26 @@ const imageReveal = {
 function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
   const [n, setN] = useState(0);
   useEffect(() => {
-    let v = 0;
-    const step = to / 60;
-    const t = setInterval(() => {
-      v += step;
-      if (v >= to) { setN(to); clearInterval(t); }
-      else setN(Math.floor(v));
-    }, 22);
-    return () => clearInterval(t);
+    const controls = animate(0, to, {
+      duration: 1.5,
+      ease: [0.16, 1, 0.3, 1],
+      onUpdate(value) {
+        setN(Math.floor(value));
+      },
+    });
+    return () => controls.stop();
   }, [to]);
   return <>{n}{suffix}</>;
 }
 
 /* ── Cursor blob ── */
 function CursorBlob() {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
+  const x = useMotionValue(-160);
+  const y = useMotionValue(-160);
   const sx = useSpring(x, { stiffness: 80, damping: 18 });
   const sy = useSpring(y, { stiffness: 80, damping: 18 });
   useEffect(() => {
-    const fn = (e: MouseEvent) => { x.set(e.clientX); y.set(e.clientY); };
+    const fn = (e: MouseEvent) => { x.set(e.clientX - 160); y.set(e.clientY - 160); };
     window.addEventListener("mousemove", fn);
     return () => window.removeEventListener("mousemove", fn);
   }, [x, y]);
@@ -61,9 +62,10 @@ function CursorBlob() {
       style={{
         position: "fixed", width: 320, height: 320, borderRadius: "50%",
         pointerEvents: "none", zIndex: 9999,
-        left: sx, top: sy, translateX: "-50%", translateY: "-50%",
+        left: 0, top: 0, x: sx, y: sy,
         background: "radial-gradient(circle, rgba(232,224,208,0.07) 0%, transparent 65%)",
         mixBlendMode: "screen" as const,
+        willChange: "transform",
       }}
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
@@ -83,7 +85,7 @@ function ParallaxImage({ src }: { src: string }) {
     return () => window.removeEventListener("scroll", fn);
   }, [y]);
   return (
-    <motion.div style={{ position: "absolute", inset: 0, y: iy, scale: 1.12 }}>
+    <motion.div style={{ position: "absolute", inset: 0, y: iy, scale: 1.12, willChange: "transform" }}>
       <img src={src} alt="Mukilan Architecture hero" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
     </motion.div>
   );

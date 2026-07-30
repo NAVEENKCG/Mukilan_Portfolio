@@ -27,7 +27,8 @@ export function ProjectCard({ title, image, index, className, onClick }: Project
             whileInView={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ ...EASE_OUT_EXPO, delay: (index % 2) * 0.1 }}
-            whileTap={{ scale: 0.98 }}
+            whileHover={{ y: -8 }}
+            whileTap={{ scale: 0.96 }}
             onClick={onClick}
         >
             <motion.div
