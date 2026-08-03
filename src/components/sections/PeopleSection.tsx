@@ -21,15 +21,15 @@ const teamMembers = [
     },
 ];
 
-export default function PeoplePage() {
+export default function PeopleSection() {
     const [activeIndex, setActiveIndex] = useState(0);
     const shouldReduceMotion = useReducedMotion();
     const activeMember = teamMembers[activeIndex];
 
     return (
-        <section className="people-layout">
+        <section className="relative w-full flex flex-col md:flex-row min-h-screen">
             {/* Portrait */}
-            <div className="people-portrait">
+            <div className="w-full md:w-1/2 relative min-h-[50vh] md:min-h-screen overflow-hidden">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={activeIndex}
@@ -52,38 +52,50 @@ export default function PeoplePage() {
             </div>
 
             {/* Vertical text */}
-            <div className="vertical-text hidden md:flex items-start pt-20">
+            <div className="vertical-text hidden md:flex items-start pt-20 absolute left-1/2 z-10">
                 {activeMember.name} Bio
             </div>
 
             {/* Content */}
             <motion.div
-                className="people-content"
+                className="w-full md:w-1/2 flex flex-col justify-center py-32 px-8 md:px-16 lg:px-24"
                 initial="initial"
-                animate="animate"
+                whileInView="animate"
+                viewport={{ once: true, margin: "-100px" }}
                 variants={staggerContainer}
             >
-                <motion.h1 className="section-heading" variants={staggerItem}>
+                <motion.h2 className="section-heading" variants={staggerItem}>
                     People
-                </motion.h1>
+                </motion.h2>
 
-                <div className="mt-8">
-                    {teamMembers.map((member, index) => (
-                        <motion.button
-                            key={member.name}
-                            className={cn(
-                                "team-member block text-left w-full",
-                                index === activeIndex && "active"
-                            )}
-                            onClick={() => setActiveIndex(index)}
-                            variants={staggerItem}
-                            whileTap={{ scale: 0.96 }}
-                            aria-label={`View ${member.name}'s profile`}
-                        >
-                            <div className="team-member-name">{member.name}</div>
-                            <div className="team-member-title">{member.title}</div>
-                        </motion.button>
-                    ))}
+                <div className="mt-8 flex flex-col gap-2">
+                    {teamMembers.map((member, index) => {
+                        const isActive = index === activeIndex;
+                        return (
+                            <motion.button
+                                key={member.name}
+                                className={cn(
+                                    "relative block text-left w-full py-4 px-6 rounded-2xl transition-colors duration-300",
+                                    isActive ? "text-white" : "text-white/[0.6] hover:text-white"
+                                )}
+                                onClick={() => setActiveIndex(index)}
+                                variants={staggerItem}
+                                whileTap={{ scale: 0.98 }}
+                            >
+                                {isActive && (
+                                    <motion.div
+                                        layoutId="active-team-member"
+                                        className="absolute inset-0 bg-white/[0.03] border border-white/[0.08] rounded-2xl backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]"
+                                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                    />
+                                )}
+                                <div className="relative z-10 flex flex-col">
+                                    <span className="font-body text-[16px] tracking-wide">{member.name}</span>
+                                    <span className={cn("font-body text-[13px] mt-1 transition-colors duration-300", isActive ? "text-[var(--accent)]" : "text-white/[0.4]")}>{member.title}</span>
+                                </div>
+                            </motion.button>
+                        );
+                    })}
                 </div>
 
                 {/* Bio */}
@@ -97,8 +109,7 @@ export default function PeoplePage() {
                         transition={EASE_OUT_EXPO}
                     >
                         <p
-                            className="text-sm leading-relaxed"
-                            style={{ color: "var(--text-secondary)" }}
+                            className="text-sm leading-relaxed text-white/[0.6]"
                         >
                             {activeMember.bio}
                         </p>

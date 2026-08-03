@@ -22,7 +22,7 @@ export function ProjectCard({ title, image, index, className, onClick }: Project
 
     return (
         <motion.article
-            className="project-card flex flex-col w-full"
+            className="project-card flex flex-col w-full p-3 md:p-4 bg-white/[0.03] border border-white/[0.08] backdrop-blur-xl rounded-3xl"
             initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 40 }}
             whileInView={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -32,7 +32,7 @@ export function ProjectCard({ title, image, index, className, onClick }: Project
             onClick={onClick}
         >
             <motion.div
-                className="overflow-hidden w-full m-0 p-0 block bg-black/5"
+                className="overflow-hidden w-full m-0 p-0 block bg-black/20 rounded-2xl"
                 layoutId={`project-image-${title}`}
             >
                 <Image
@@ -45,7 +45,7 @@ export function ProjectCard({ title, image, index, className, onClick }: Project
                     sizes="(max-width: 768px) 100vw, 40vw"
                 />
             </motion.div>
-            <h3 className="project-card-title">{title}</h3>
+            <h3 className="font-body text-[15px] font-light tracking-widest uppercase text-white/[0.6] mt-4 mb-2 text-center">{title}</h3>
         </motion.article>
     );
 }

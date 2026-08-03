@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ProjectCard } from "@/components/ProjectCard";
-import { staggerContainer, EASE_OUT_EXPO } from "@/lib/animations";
+import { staggerContainer, staggerItem, EASE_OUT_EXPO } from "@/lib/animations";
 import Image from "next/image";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -111,7 +111,7 @@ const projects: Project[] = [
     },
 ];
 
-export default function WorksPage() {
+export default function WorksSection() {
     const leftColumn = projects.filter((_, i) => i % 2 === 0);
     const rightColumn = projects.filter((_, i) => i % 2 !== 0);
 
@@ -129,12 +129,18 @@ export default function WorksPage() {
                 {!selectedProject ? (
                     <motion.div
                         key="grid"
-                        className="flex flex-col md:flex-row gap-6 md:gap-[5%] lg:gap-[8%] pt-10 pb-32 pl-[8%] pr-[420px] max-lg:pr-[3%] w-full"
+                        className="flex flex-col gap-12 py-32 px-6 md:px-12 max-w-7xl mx-auto w-full"
                         initial="initial"
-                        animate="animate"
+                        whileInView="animate"
+                        viewport={{ once: true, margin: "-100px" }}
                         exit={{ opacity: 0, transition: { duration: 0.4 } }}
                         variants={staggerContainer}
                     >
+                        <motion.h2 className="section-heading" variants={staggerItem}>
+                            Selected Works
+                        </motion.h2>
+
+                        <div className="flex flex-col md:flex-row gap-6 md:gap-[5%] lg:gap-[8%]">
                         {/* Left Column - Wider Aspect Ratio */}
                         <div className="flex-[1.2] flex flex-col gap-16 md:gap-24">
                             {leftColumn.map((project, idx) => (
@@ -162,6 +168,7 @@ export default function WorksPage() {
                                 />
                             ))}
                         </div>
+                        </div>
                     </motion.div>
                 ) : (
                     <motion.div
@@ -174,7 +181,7 @@ export default function WorksPage() {
                     >
                         {/* Info Panel */}
                         <motion.aside
-                            className="bg-[#fafaf8] border-l border-[#e4e2db] absolute right-0 top-0 bottom-0 overflow-hidden z-[2]"
+                            className="bg-white/[0.03] backdrop-blur-xl border-l border-white/[0.08] absolute right-0 top-0 bottom-0 overflow-hidden z-[2]"
                             initial={{ x: 396 }}
                             animate={{ x: isInfoPanelOpen ? 0 : 396 }}
                             transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
@@ -187,24 +194,24 @@ export default function WorksPage() {
                                 style={{ userSelect: 'none' }}
                             >
                                 <div className={cn(
-                                    "w-[1px] bg-[#ccc] origin-top transition-all duration-300 group-hover:bg-[#888]",
-                                    isInfoPanelOpen ? "h-[48px] bg-[#999]" : "h-[36px] group-hover:h-[48px]"
+                                    "w-[1px] bg-white/[0.2] origin-top transition-all duration-300 group-hover:bg-white/[0.4]",
+                                    isInfoPanelOpen ? "h-[48px]" : "h-[36px] group-hover:h-[48px]"
                                 )} />
                                 <div className={cn(
-                                    "vertical-text-up text-[9px] uppercase transition-all duration-300 group-hover:text-[#444] group-hover:tracking-[4.5px]",
-                                    isInfoPanelOpen ? "text-[#666] tracking-[3.5px]" : "text-[#aaa] tracking-[3.5px]"
+                                    "vertical-text-up text-[9px] uppercase transition-all duration-300 text-white/[0.4] group-hover:text-white/[0.8] group-hover:tracking-[4.5px]",
+                                    isInfoPanelOpen ? "tracking-[3.5px]" : "tracking-[3.5px]"
                                 )}>
                                     {isInfoPanelOpen ? "Close" : "Info"}
                                 </div>
                                 <div className={cn(
                                     "text-[15px] font-light leading-[1] transition-all duration-500",
-                                    isInfoPanelOpen ? "rotate-45 text-[#666]" : "rotate-0 text-[#bbb]"
+                                    isInfoPanelOpen ? "rotate-45 text-white/[0.6]" : "rotate-0 text-white/[0.4]"
                                 )}>
                                     +
                                 </div>
                                 <div className={cn(
-                                    "w-[1px] bg-[#ccc] origin-top transition-all duration-300 group-hover:bg-[#888]",
-                                    isInfoPanelOpen ? "h-[48px] bg-[#999]" : "h-[36px] group-hover:h-[48px]"
+                                    "w-[1px] bg-white/[0.2] origin-top transition-all duration-300 group-hover:bg-white/[0.4]",
+                                    isInfoPanelOpen ? "h-[48px]" : "h-[36px] group-hover:h-[48px]"
                                 )} />
                             </div>
 
@@ -221,35 +228,35 @@ export default function WorksPage() {
                                 }}
                                 style={{ pointerEvents: isInfoPanelOpen ? 'auto' : 'none' }}
                             >
-                                <div className="inline-block text-[9px] tracking-[3px] uppercase text-[#b0ab9e] border border-[#e0ddd5] py-[5px] px-[11px] mb-[32px]">
+                                <div className="inline-block text-[9px] tracking-[3px] uppercase text-white/[0.4] border border-white/[0.1] py-[5px] px-[11px] mb-[32px]">
                                     {selectedProject.typology}
                                 </div>
 
-                                <h2 className="font-display text-[32px] font-light tracking-[-0.4px] text-[#1a1a18] leading-[1.18] mb-[18px] uppercase">
+                                <h2 className="font-display text-[32px] font-light tracking-[-0.4px] text-white leading-[1.18] mb-[18px] uppercase">
                                     {selectedProject.title}
                                 </h2>
 
-                                <p className="text-[13.5px] leading-[1.8] text-[#888] mb-[36px]">
+                                <p className="text-[13.5px] leading-[1.8] text-white/[0.6] mb-[36px]">
                                     {selectedProject.description}
                                 </p>
 
-                                <div className="h-[1px] bg-gradient-to-r from-[#e0ddd5] to-transparent mb-[30px]" />
+                                <div className="h-[1px] bg-gradient-to-r from-white/[0.1] to-transparent mb-[30px]" />
 
-                                <div className="flex justify-between items-baseline py-[11px] border-b border-[#f0ede6]">
-                                    <span className="text-[9px] tracking-[2.5px] uppercase text-[#c0bcb2]">Location</span>
-                                    <span className="text-[13px] text-[#333]">{selectedProject.location}</span>
+                                <div className="flex justify-between items-baseline py-[11px] border-b border-white/[0.05]">
+                                    <span className="text-[9px] tracking-[2.5px] uppercase text-white/[0.4]">Location</span>
+                                    <span className="text-[13px] text-white/[0.9]">{selectedProject.location}</span>
                                 </div>
-                                <div className="flex justify-between items-baseline py-[11px] border-b border-[#f0ede6]">
-                                    <span className="text-[9px] tracking-[2.5px] uppercase text-[#c0bcb2]">Area</span>
-                                    <span className="text-[13px] text-[#333]">{selectedProject.scale}</span>
+                                <div className="flex justify-between items-baseline py-[11px] border-b border-white/[0.05]">
+                                    <span className="text-[9px] tracking-[2.5px] uppercase text-white/[0.4]">Area</span>
+                                    <span className="text-[13px] text-white/[0.9]">{selectedProject.scale}</span>
                                 </div>
-                                <div className="flex justify-between items-baseline py-[11px] border-b border-[#f0ede6]">
-                                    <span className="text-[9px] tracking-[2.5px] uppercase text-[#c0bcb2]">Status</span>
-                                    <span className="text-[13px] text-[#333]">{selectedProject.status}</span>
+                                <div className="flex justify-between items-baseline py-[11px] border-b border-white/[0.05]">
+                                    <span className="text-[9px] tracking-[2.5px] uppercase text-white/[0.4]">Status</span>
+                                    <span className="text-[13px] text-white/[0.9]">{selectedProject.status}</span>
                                 </div>
                                 <div className="flex justify-between items-baseline py-[11px]">
-                                    <span className="text-[9px] tracking-[2.5px] uppercase text-[#c0bcb2]">Studio</span>
-                                    <span className="text-[13px] text-[#333]">Mukilan Architecture</span>
+                                    <span className="text-[9px] tracking-[2.5px] uppercase text-white/[0.4]">Studio</span>
+                                    <span className="text-[13px] text-white/[0.9]">Mukilan Architecture</span>
                                 </div>
                             </motion.div>
                         </motion.aside>

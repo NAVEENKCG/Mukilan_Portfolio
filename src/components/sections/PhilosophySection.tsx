@@ -4,40 +4,45 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { fadeIn, fadeInUp, staggerContainer, staggerItem, EASE_OUT_EXPO } from "@/lib/animations";
 
-export default function PhilosophyPage() {
+export default function PhilosophySection() {
     const shouldReduceMotion = useReducedMotion();
 
     return (
-        <section className="philosophy-layout">
-            {/* Left image */}
-            <motion.div
-                className="philosophy-image"
-                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: -40 }}
-                animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
-                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            >
-                <Image
-                    src="/images/hero.png"
-                    alt="Architectural landscape representing our philosophy"
-                    fill
-                    className="object-cover"
-                    priority
-                    sizes="50vw"
-                />
-            </motion.div>
+        <section className="relative w-full flex flex-col md:flex-row min-h-screen">
+            {/* Left Image - Sticky for Parallax effect */}
+            <div className="w-full md:w-1/2 relative min-h-[50vh] md:min-h-screen overflow-hidden">
+                <motion.div
+                    className="absolute inset-0"
+                    initial={{ scale: 1.1 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+                    viewport={{ once: true }}
+                >
+                    <Image
+                        src="/images/philosophy-building.png"
+                        alt="Modern concrete architecture showing our philosophy"
+                        fill
+                        className="object-cover"
+                        priority
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                    <div className="absolute inset-0 bg-black/20" />
+                </motion.div>
+            </div>
 
             {/* Content */}
             <motion.div
-                className="philosophy-content"
+                className="w-full md:w-1/2 flex flex-col justify-center py-32 px-8 md:px-16 lg:px-24"
                 initial="initial"
-                animate="animate"
+                whileInView="animate"
+                viewport={{ once: true, margin: "-100px" }}
                 variants={staggerContainer}
             >
-                <motion.h1 className="section-heading" variants={staggerItem}>
+                <motion.h2 className="section-heading" variants={staggerItem}>
                     Philosophy
-                </motion.h1>
+                </motion.h2>
 
-                <motion.div className="philosophy-text" variants={staggerItem}>
+                <motion.div className="font-body text-[15px] leading-loose text-white/[0.6] max-w-xl" variants={staggerItem}>
                     <p>
                         At Mukilan Architecture, we believe that buildings should not merely occupy land
                         but exist in profound dialogue with it. Every project begins with deep listening —

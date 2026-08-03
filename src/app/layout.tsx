@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import "./globals.css";
-import { Sidebar } from "@/components/Sidebar";
+import SmoothScroll from "@/components/SmoothScroll";
+import IntroLoader from "@/components/IntroLoader";
+import Header from "@/components/Header";
+import PageTransition from "@/components/PageTransition";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -34,15 +37,16 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${cormorant.variable} ${dmSans.variable}`}>
       <body>
-        <a href="#main-content" className="skip-to-content">
-          Skip to content
-        </a>
-        <div className="site-layout">
-          <main id="main-content" className="flex-1">
-            {children}
+        <SmoothScroll>
+          <IntroLoader />
+          <Header />
+          <a href="#main-content" className="skip-to-content">
+            Skip to content
+          </a>
+          <main id="main-content" className="flex-1 relative w-full overflow-x-hidden">
+            <PageTransition>{children}</PageTransition>
           </main>
-          <Sidebar />
-        </div>
+        </SmoothScroll>
       </body>
     </html>
   );
