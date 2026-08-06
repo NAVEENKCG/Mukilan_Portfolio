@@ -36,7 +36,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${cormorant.variable} ${dmSans.variable}`}>
-      <body>
+      <body className="antialiased text-text-primary bg-bg-base">
+        <div aria-hidden="true" className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+          <div className="absolute inset-0 blueprint-grid opacity-[0.15] [mask-image:radial-gradient(ellipse_92%_80%_at_50%_0%,#000_25%,transparent_85%)] [-webkit-mask-image:radial-gradient(ellipse_92%_80%_at_50%_0%,#000_25%,transparent_85%)]"></div>
+          <div className="absolute -top-[25%] -right-[18%] w-[60vw] h-[60vw] max-w-[820px] max-h-[820px] rounded-full bg-[radial-gradient(circle,rgba(78,205,196,0.04),transparent_70%)]"></div>
+          <div className="absolute bottom-[-15%] -left-[15%] w-[55vw] h-[55vw] max-w-[760px] max-h-[760px] rounded-full bg-[radial-gradient(circle,rgba(196,149,106,0.03),transparent_70%)]"></div>
+        </div>
         <SmoothScroll>
           <IntroLoader />
           <Header />

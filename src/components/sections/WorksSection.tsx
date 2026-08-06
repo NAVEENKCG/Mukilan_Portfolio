@@ -28,49 +28,62 @@ export default function WorksSection() {
         {!selectedProject ? (
           <motion.div
             key="grid"
-            className="flex flex-col gap-12 py-32 px-6 md:px-12 max-w-7xl mx-auto w-full"
+            className="flex flex-col py-32 px-5 sm:px-8 max-w-7xl mx-auto w-full relative"
             initial="initial"
             whileInView="animate"
             viewport={{ once: true, margin: "-100px" }}
             exit={{ opacity: 0, transition: { duration: 0.4 } }}
             variants={staggerContainer}
           >
-            <motion.div variants={staggerItem}>
-              <p className="section-eyebrow">Portfolio</p>
-              <h2 className="section-heading">
-                Selected Works
+            <motion.div variants={staggerItem} className="mb-20">
+              <div className="mb-7 flex items-center gap-4 rule-top pt-4">
+                <span className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.28em] text-white/40">
+                  <span>Selected Works</span>
+                </span>
+                <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent-vivid)]"></span>
+              </div>
+              <h2 className="text-lift font-display font-bold text-white text-[clamp(2rem,5.5vw,4.5rem)] leading-[0.95] tracking-tight text-balance max-w-3xl">
+                We <span className="accent">architect</span> what others assemble.
               </h2>
             </motion.div>
 
-            <div className="flex flex-col md:flex-row gap-6 md:gap-[5%] lg:gap-[8%]">
-              {/* Left Column - Wider Aspect Ratio */}
-              <div className="flex-[1.2] flex flex-col gap-16 md:gap-24">
-                {leftColumn.map((project, idx) => (
-                  <ProjectCard
-                    key={project.title}
-                    title={project.title}
-                    image={project.image}
-                    index={idx * 2}
-                    className="aspect-[16/10] w-full"
-                    onClick={() => handleSelectProject(project)}
-                  />
-                ))}
-              </div>
+            <motion.div variants={staggerItem} className="mb-6 flex items-baseline justify-between border-b border-white/10 pb-4">
+              <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-white/40">Portfolio</span>
+              <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-white/40 tabular-nums">Works / {projects.length.toString().padStart(2, '0')}</span>
+            </motion.div>
 
-              {/* Right Column - Taller Aspect Ratio */}
-              <div className="flex-[1.0] flex flex-col gap-16 md:gap-24">
-                {rightColumn.map((project, idx) => (
-                  <ProjectCard
-                    key={project.title}
-                    title={project.title}
-                    image={project.image}
-                    index={idx * 2 + 1}
-                    className="aspect-[4/3] w-full"
+            <ul className="flex flex-col w-full">
+              {projects.map((project, idx) => (
+                <motion.li key={project.title} variants={staggerItem}>
+                  <button
                     onClick={() => handleSelectProject(project)}
-                  />
-                ))}
-              </div>
-            </div>
+                    className="group w-full relative grid grid-cols-1 items-start gap-4 border-b border-white/10 py-8 transition-colors duration-300 hover:bg-white/5 sm:gap-8 sm:py-10 lg:grid-cols-12 lg:items-center text-left"
+                  >
+                    <div className="lg:col-span-2">
+                      <span className="text-edge block text-5xl leading-none tracking-tight transition-colors duration-300 group-hover:text-white sm:text-6xl font-display">
+                        {(idx + 1).toString().padStart(2, '0')}
+                      </span>
+                    </div>
+                    <div className="lg:col-span-4">
+                      <h3 className="font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">{project.title}</h3>
+                      <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--accent-vivid)]">{project.typology}</p>
+                    </div>
+                    <div className="lg:col-span-4">
+                      <p className="max-w-prose text-base leading-relaxed text-white/60 text-pretty line-clamp-2">
+                        {project.description}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-3 lg:col-span-2 lg:justify-end">
+                      <span className="font-mono text-xs uppercase tracking-[0.18em] text-white/70">View Project</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-white/40 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[var(--accent-vivid)]">
+                        <path d="M7 7h10v10"></path>
+                        <path d="M7 17 17 7"></path>
+                      </svg>
+                    </div>
+                  </button>
+                </motion.li>
+              ))}
+            </ul>
           </motion.div>
         ) : (
           <motion.div

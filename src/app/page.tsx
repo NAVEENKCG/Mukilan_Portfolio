@@ -158,188 +158,106 @@ export default function HomePage() {
     <>
       {!reduced && <CursorBlob />}
 
-      {/* ───── HERO ───── */}
-      <section className="hero">
-        <div className="img-wrap">
-          {/* Gradient mesh overlay */}
-          <div className="hero-gradient-mesh" />
-
-          <motion.div
-            style={{ position: "absolute", inset: 0 }}
-            variants={imageReveal}
-            initial="initial"
-            animate="animate"
-          >
-            <ParallaxImage src={IMG} />
-          </motion.div>
-
-          <div className="vig" />
-          <div className="bot" />
-          <div className="top" />
-
-          {/* Right scroll indicator */}
-          <motion.div
-            style={{
-              position: "absolute",
-              right: 28,
-              top: "50%",
-              transform: "translateY(-50%)",
-              zIndex: 10,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 14,
-            }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 2.2 }}
-          >
-            <span className="coord">25.0°N 80.1°W</span>
-            <div className="scroll-track">
-              <div className="scroll-fill" />
-            </div>
-          </motion.div>
-
-          {/* Bottom content */}
-          <div
-            style={{
-              position: "absolute",
-              bottom: 0,
-              left: 0,
-              right: 0,
-              zIndex: 10,
-              padding: "0 56px 60px",
-            }}
-          >
-            <motion.div
-              className="gline"
-              variants={revealLine}
-              initial="initial"
-              animate="animate"
-            />
-
-            <div
-              style={{
-                display: "flex",
-                alignItems: "flex-end",
-                justifyContent: "space-between",
-                gap: 40,
-              }}
-            >
-              {/* Left */}
-              <div style={{ maxWidth: 640 }}>
-                <div style={{ overflow: "hidden", marginBottom: 16 }}>
-                  <motion.p
-                    className="font-body text-[10px] tracking-[0.3em] uppercase text-white/[0.38]"
-                    variants={maskReveal(0.6)}
-                    initial="initial"
-                    animate="animate"
-                  >
-                    Est. {siteConfig.established} · {siteConfig.location}
-                  </motion.p>
-                </div>
-
-                <div style={{ overflow: "hidden" }}>
-                  <motion.h1
-                    className="font-display font-extralight leading-[0.9] text-white"
-                    style={{
-                      fontSize: "clamp(54px,9vw,112px)",
-                      letterSpacing: "-0.03em",
-                    }}
-                    variants={maskReveal(0.75)}
-                    initial="initial"
-                    animate="animate"
-                  >
-                    Architecture
-                  </motion.h1>
-                </div>
-
-                <div style={{ overflow: "hidden", marginBottom: 26 }}>
-                  <motion.h1
-                    className="font-display font-extralight leading-[0.9] text-sand"
-                    style={{
-                      fontSize: "clamp(54px,9vw,112px)",
-                      letterSpacing: "-0.03em",
-                    }}
-                    variants={maskReveal(0.9)}
-                    initial="initial"
-                    animate="animate"
-                  >
-                    for Life
-                  </motion.h1>
-                </div>
-
-                <motion.p
-                  className="font-body text-[14px] leading-[1.8] text-white/[0.46] max-w-[360px] mb-9"
-                  variants={fadeUp(1.2)}
-                  initial="initial"
-                  animate="animate"
-                >
-                  {siteConfig.description}
-                </motion.p>
-
-                <motion.div
-                  className="flex items-center gap-6"
-                  variants={fadeUp(1.4)}
-                  initial="initial"
-                  animate="animate"
-                >
-                  <a href="#works" className="btn-p">
-                    View Works
-                    <motion.span
-                      animate={{ x: [0, 5, 0] }}
-                      transition={{
-                        duration: 2.2,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                    >
-                      →
-                    </motion.span>
-                  </a>
-                  <a href="#philosophy" className="btn-g">
-                    Our Philosophy
-                  </a>
-                </motion.div>
-              </div>
-
-              {/* Right */}
-              <motion.div
-                className="right-block flex flex-col gap-7 items-end shrink-0"
-                variants={fadeUp(1.7)}
-                initial="initial"
-                animate="animate"
-              >
-                <div className="badge">
-                  <span className="font-body text-[9px] tracking-[0.25em] uppercase text-white/[0.28]">
-                    Current Project
-                  </span>
-                  <span className="font-display text-[15px] font-light text-white/[0.85] tracking-tight">
-                    {currentProject.name}
-                  </span>
-                  <span className="font-body text-[9px] tracking-[0.15em] text-white/[0.28] uppercase">
-                    {currentProject.location} — {currentProject.status}
-                  </span>
-                </div>
-
-                <div className="flex gap-9">
-                  {stats.map(({ label, value, suffix }) => (
-                    <div key={label} style={{ textAlign: "right" }}>
-                      <div className="font-body text-[9px] tracking-[0.28em] uppercase text-white/[0.3] mb-1">
-                        {label}
-                      </div>
-                      <div
-                        className="font-display text-[30px] font-extralight text-sand leading-none"
-                        style={{ letterSpacing: "-0.04em" }}
-                      >
-                        <Counter to={value} suffix={suffix} />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
+      {/* ───── HERO (ARQX Inspired) ───── */}
+      <section className="relative h-[110svh] sm:h-[130svh]">
+        <div className="sticky top-0 h-[100svh] w-full overflow-hidden">
+          {/* Concentric Circles Background */}
+          <div aria-hidden="true" className="absolute inset-0 z-0">
+            <div className="relative flex items-center justify-center h-full w-full opacity-60">
+              <div 
+                className="h-44 w-44 sm:h-60 sm:w-60 rounded-full" 
+                style={{
+                  background: "radial-gradient(circle at 34% 28%, rgba(255,255,255,0.02), rgba(13,21,38,0.5) 46%, rgba(78,205,196,0.08) 72%, transparent 82%)",
+                  boxShadow: "inset -10px -12px 40px rgba(78,205,196,0.08), inset 16px 14px 30px rgba(255,255,255,0.05), 0 30px 60px -24px rgba(0,0,0,0.5)"
+                }}
+              />
+              <motion.div 
+                className="absolute h-44 w-44 sm:h-60 sm:w-60 rounded-full border border-[var(--accent-vivid)]/20" 
+                style={{ transform: "scale(1.22)" }}
+                animate={{ rotate: 360 }}
+                transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+              />
+              <motion.div 
+                className="absolute h-44 w-44 sm:h-60 sm:w-60 rounded-full border border-white/5" 
+                style={{ transform: "scale(1.42)" }}
+                animate={{ rotate: -360 }}
+                transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+              />
             </div>
           </div>
+
+          {/* Vignette fade for the grid behind text */}
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-[5]" style={{ background: "radial-gradient(135% 115% at 0% 100%, var(--bg-base) 30%, rgba(5,10,24,0.55) 54%, transparent 78%)" }}></div>
+
+          {/* Top fixed labels */}
+          <motion.div 
+            className="pointer-events-none absolute inset-x-0 top-0 z-10 mx-auto max-w-7xl px-5 sm:px-8 pt-24 sm:pt-28 flex items-start justify-between font-mono text-[10px] sm:text-xs uppercase tracking-[0.22em] text-white/40"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 2.5 }}
+          >
+            <span>Digital Infrastructure</span>
+            <span className="flex items-center gap-2 text-white/30">
+              <span className="h-1 w-1 rounded-full bg-[var(--accent-vivid)]"></span> Systems Online
+            </span>
+          </motion.div>
+
+          {/* Bottom Content */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 mx-auto max-w-7xl px-5 sm:px-8 pb-24 sm:pb-28">
+            <motion.p 
+              className="mb-5 font-mono text-xs uppercase tracking-[0.3em] text-[var(--accent-vivid)]"
+              variants={fadeUp(1.2)}
+              initial="initial"
+              animate="animate"
+            >
+              Mukilan · Engineered for life
+            </motion.p>
+            
+            <motion.h1 
+              className="text-lift text-edge font-display font-bold text-white leading-[0.94] tracking-tight max-w-[15ch]"
+              style={{ fontSize: "clamp(2.5rem, 7vw, 6.5rem)" }}
+              variants={fadeUp(1.4)}
+              initial="initial"
+              animate="animate"
+            >
+              We architect what others <span className="text-white [-webkit-text-stroke:0] [-webkit-text-fill-color:white]">assemble.</span>
+            </motion.h1>
+
+            <motion.div 
+              className="pointer-events-auto mt-8 flex flex-wrap items-center gap-5"
+              variants={fadeUp(1.6)}
+              initial="initial"
+              animate="animate"
+            >
+              <a data-cursor="hover" className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-white px-6 py-3 font-mono text-xs uppercase tracking-[0.14em] text-bg-base transition-colors hover:bg-[var(--accent)] hover:text-bg-base" href="#works">
+                <span className="relative z-10">// View our works</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="relative z-10 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                  <path d="M7 7h10v10"></path><path d="M7 17 17 7"></path>
+                </svg>
+              </a>
+              <p className="max-w-xs text-sm text-white/50 leading-relaxed">
+                Modern buildings, carefully balancing individual needs and location attributes.
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Scroll Down Indicator */}
+          <motion.div 
+            className="pointer-events-none absolute bottom-7 left-1/2 z-10 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40 [@media(max-height:640px)]:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 3, duration: 1 }}
+          >
+            <span className="font-mono text-[10px] uppercase tracking-[0.3em]">Scroll to enter</span>
+            <motion.span
+              animate={{ y: [0, 8, 0] }}
+              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path>
+              </svg>
+            </motion.span>
+          </motion.div>
         </div>
       </section>
 

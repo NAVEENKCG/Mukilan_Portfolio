@@ -114,6 +114,36 @@ export function Header() {
         </button>
       </motion.header>
 
+      {/* ARQX-style Fixed CTA */}
+      <motion.div
+        className="fixed right-8 top-4 z-50 hidden lg:block sm:top-6"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <a
+          className="group relative inline-flex items-center gap-1.5 overflow-hidden rounded-full bg-white px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.14em] text-bg-base shadow-card transition-colors hover:bg-accent hover:text-bg-base"
+          href="#contact"
+        >
+          <span className="relative z-10">Book a Free Call</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="relative z-10 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          >
+            <path d="M7 7h10v10"></path>
+            <path d="M7 17 17 7"></path>
+          </svg>
+        </a>
+      </motion.div>
+
       <AnimatePresence>
         {menuOpen && <OverlayMenu onClose={() => setMenuOpen(false)} />}
       </AnimatePresence>
