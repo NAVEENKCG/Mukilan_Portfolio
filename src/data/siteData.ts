@@ -51,21 +51,21 @@ export interface SiteConfig {
 // ─── Site Config ─────────────────────────────────────────────────────────────
 
 export const siteConfig: SiteConfig = {
-  name: "Mukilan Architecture",
-  tagline: "Architecture for Life",
+  name: "Mukilan E V",
+  tagline: "Designing Experience-Driven Environments",
   description:
-    "Every structure exists in harmony with its environment — celebrating the threshold between built form and nature.",
-  established: "2008",
-  location: "Chennai, India",
+    "Executive Architect & Conceptual designer connecting people with nature through sustainable, site-responsive architecture.",
+  established: "2026",
+  location: "Barjora, West Bengal, India",
   currentProject: {
-    name: "Bal Harbour Residence",
-    location: "Miami, FL",
-    status: "In Progress",
+    name: "New Guest House",
+    location: "Barsingsar",
+    status: "Planning",
   },
   stats: [
-    { label: "Projects", value: 94, suffix: "+" },
-    { label: "Years", value: 16, suffix: "" },
-    { label: "Awards", value: 32, suffix: "" },
+    { label: "BArch", value: 2026, suffix: "" },
+    { label: "Experience", value: 3, suffix: " Yrs" },
+    { label: "Internships", value: 3, suffix: "" },
   ],
 };
 
@@ -178,16 +178,10 @@ export const projects: Project[] = [
 
 export const teamMembers: TeamMember[] = [
   {
-    name: "Mukilan EV",
-    title: "CEO & Founding Principal",
+    name: "Mukilan E V",
+    title: "Executive Architect",
     image: "/images/team/mukilan.png",
-    bio: "Mukilan EV founded Mukilan Architecture with a vision to create buildings that exist in harmony with their environment. With over a decade of experience in contemporary architectural design, he leads the studio with a philosophy that blends bold innovation with deep respect for natural landscapes and cultural context.",
-  },
-  {
-    name: "Naveenraj SS",
-    title: "Senior Developer",
-    image: "/images/team/naveenraj.png",
-    bio: "Naveenraj SS brings cutting-edge technology expertise to the studio, bridging the gap between architectural design and digital innovation. His work in computational design and BIM technology has helped the firm push the boundaries of what's possible in modern architecture.",
+    bio: "Mukilan E V is an Executive Architect at Pinnacle FutureBuild Pvt. Limited. A conceptual designer focused on designing experience-driven environments that connect people with nature. He holds a BArch from the National Institute of Technology, Tiruchirappalli.",
   },
 ];
 
@@ -195,25 +189,25 @@ export const teamMembers: TeamMember[] = [
 
 export const skills: Skill[] = [
   // Design
+  { name: "Concept Development", icon: "Lightbulb", category: "design" },
+  { name: "User Experience Design", icon: "Users", category: "design" },
   { name: "Architectural Design", icon: "Compass", category: "design" },
-  { name: "Interior Design", icon: "Armchair", category: "design" },
-  { name: "Urban Planning", icon: "Map", category: "design" },
-  { name: "Landscape Architecture", icon: "Trees", category: "design" },
+  { name: "Conceptual Design", icon: "PenTool", category: "design" },
   // Technical
-  { name: "Structural Analysis", icon: "Building2", category: "technical" },
-  { name: "3D Modeling", icon: "Box", category: "technical" },
   { name: "BIM Technology", icon: "Layers", category: "technical" },
-  { name: "Parametric Design", icon: "Spline", category: "technical" },
+  { name: "3D Modeling", icon: "Box", category: "technical" },
+  { name: "Site-Responsive Planning", icon: "Map", category: "technical" },
+  { name: "Spatial Layouts", icon: "Maximize", category: "technical" },
   // Software
+  { name: "Rhinoceros", icon: "Hexagon", category: "software" },
   { name: "AutoCAD", icon: "PenTool", category: "software" },
   { name: "Revit", icon: "LayoutGrid", category: "software" },
   { name: "SketchUp", icon: "Cuboid", category: "software" },
-  { name: "V-Ray Rendering", icon: "Sun", category: "software" },
   // Sustainability
-  { name: "Green Building", icon: "Leaf", category: "sustainability" },
-  { name: "Energy Efficiency", icon: "Zap", category: "sustainability" },
-  { name: "Material Science", icon: "Blocks", category: "sustainability" },
-  { name: "LEED Certification", icon: "Award", category: "sustainability" },
+  { name: "Sustainable Design", icon: "Leaf", category: "sustainability" },
+  { name: "Net-Zero Principles", icon: "Wind", category: "sustainability" },
+  { name: "Nature-Integrated Design", icon: "TreePine", category: "sustainability" },
+  { name: "Environmental Performance", icon: "Activity", category: "sustainability" },
 ];
 
 export const skillCategories = [
@@ -227,45 +221,39 @@ export const skillCategories = [
 
 export const experience: ExperienceItem[] = [
   {
-    year: "2008",
-    title: "Mukilan Architecture Founded",
-    description:
-      "Established the studio in Chennai with a mission to design buildings that harmonize with their natural surroundings.",
-    location: "Chennai, India",
+    year: "July 2026 - Present",
+    title: "Executive Architect at Pinnacle",
+    description: "Executive Architect @Pinnacle FutureBuild Pvt. Limited. BIM Architect, Conceptual designer, designing Experience-Driven Environments that Connect People with Nature.",
+    location: "Durgapur",
   },
   {
-    year: "2012",
-    title: "First International Project",
-    description:
-      "Expanded beyond India with a landmark residential commission in Southeast Asia, establishing our reputation for site-sensitive design.",
-    location: "Bali, Indonesia",
+    year: "Dec 2025",
+    title: "Research Advisory at NLC India Limited",
+    description: "Worked on the design and development of the New Guest House near LSN Township, Barsingsar, contributing to concept generation, site-responsive planning and sustainable design integration. Developed architectural plans, spatial layouts and detailed design strategies while incorporating net-zero and nature-integrated design principles.",
+    location: "Neyveli Township",
   },
   {
-    year: "2016",
-    title: "Award-Winning Cultural Center",
-    description:
-      "Received national recognition for the design of a public cultural center that seamlessly integrated modern form with traditional spatial principles.",
-    location: "Kyoto, Japan",
+    year: "Dec 2024 - Jun 2025",
+    title: "Intern Architect at Mindspace Architects",
+    description: "Architectural intern.",
+    location: "Bengaluru, Karnataka, India",
   },
   {
-    year: "2019",
-    title: "Sustainability Pioneer",
-    description:
-      "Achieved LEED Platinum certification on three consecutive projects, cementing our commitment to environmentally responsible architecture.",
+    year: "Jun 2024 - Jul 2024",
+    title: "Architectural Intern at LP Builders",
+    description: "Architectural intern.",
+    location: "Vadalur, Tamil Nadu, India",
   },
   {
-    year: "2022",
-    title: "Global Practice Expansion",
-    description:
-      "Opened satellite operations to serve projects across North America and Europe, bringing our design philosophy to new landscapes and cultures.",
-    location: "Miami, FL",
+    year: "Dec 2023 - Jan 2024",
+    title: "Architectural Intern at L&T Construction",
+    description: "Architectural intern.",
+    location: "Manapakkam Chennai Tamilnadu",
   },
   {
-    year: "2024",
-    title: "Studio Growth & Innovation",
-    description:
-      "Integrated computational design and BIM workflows, expanding our team and capabilities to tackle increasingly ambitious and complex commissions worldwide.",
-    location: "Chennai, India",
+    year: "2021 - 2026",
+    title: "BArch at NIT Tiruchirappalli",
+    description: "Bachelor of Architecture, National Institute of Technology, Tiruchirappalli.",
   },
 ];
 
@@ -273,14 +261,13 @@ export const experience: ExperienceItem[] = [
 
 export const contactInfo: ContactInfo = {
   office: {
-    name: "Mukilan Architecture Studio",
-    address: ["Chennai, Tamil Nadu", "India"],
+    name: "Mukilan E V",
+    address: ["Barjora, West Bengal", "India"],
   },
-  phone: "+91 9677335058",
-  email: "mukilan@gmail.com",
+  phone: "+91", // Add your phone here
+  email: "mukilan@example.com", // Add your email here
   inquiries: [
-    { label: "New business inquiries", email: "mukilan@gmail.com" },
-    { label: "Media & press inquiries", email: "mukilan@gmail.com" },
+    { label: "New business inquiries", email: "mukilan@example.com" },
   ],
   socials: [
     {
@@ -294,23 +281,20 @@ export const contactInfo: ContactInfo = {
 // ─── About ───────────────────────────────────────────────────────────────────
 
 export const aboutContent = {
-  eyebrow: "About the Studio",
-  headline: "Designing at the Intersection of Nature and Innovation",
+  eyebrow: "About Me",
+  headline: "Designing Experience-Driven Environments",
   paragraphs: [
-    "Mukilan Architecture is a Chennai-based design practice founded by Mukilan EV in 2008. We craft buildings by carefully balancing the needs of the individual and the attributes of the location — creating architecture that exists in profound dialogue with its environment.",
-    "Our multidisciplinary team combines architectural design, computational technology, and sustainable building practices to deliver projects that are simultaneously bold and humble, contemporary yet timeless.",
+    "I am Mukilan E V, an Executive Architect at Pinnacle FutureBuild Pvt. Limited, and a conceptual designer.",
+    "My focus is on designing experience-driven environments that connect people with nature. With experience spanning from conceptual generation and site-responsive planning to sustainable design integration, I strive to incorporate net-zero and nature-integrated principles to enhance environmental and user performance.",
   ],
   capabilities: [
-    "Residential Design",
-    "Commercial Architecture",
-    "Hospitality & Resorts",
-    "Cultural Spaces",
-    "Urban Planning",
-    "Interior Design",
-    "Landscape Architecture",
-    "Heritage Restoration",
-    "Sustainable Design",
-    "BIM & Computational Design",
+    "Concept Development",
+    "User Experience Design (UED)",
+    "Rhinoceros",
+    "BIM Architecture",
+    "Site-responsive Planning",
+    "Net-Zero Principles",
+    "Nature-Integrated Design",
   ],
 };
 
