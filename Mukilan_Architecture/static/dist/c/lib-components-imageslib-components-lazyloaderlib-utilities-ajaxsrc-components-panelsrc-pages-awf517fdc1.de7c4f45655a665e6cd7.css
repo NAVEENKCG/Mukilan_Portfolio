@@ -1,0 +1,2 @@
+.picture{position:relative}.picture.loaded img,.picture.error img{opacity:1}.picture.lazy .observer{position:absolute;top:-50%;height:50%;width:100%;visibility:hidden}.preload-image{display:none}
+
