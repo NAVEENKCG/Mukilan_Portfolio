@@ -1,6 +1,0 @@
-{
-  "name": "Oppenheim Architecture",
-  "description": "Minimalist architectural portfolio and immersive studio experience inspired by Oppenheim Architecture",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
