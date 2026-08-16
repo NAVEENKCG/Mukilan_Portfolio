@@ -130,31 +130,8 @@ function getMediaFallback(requestedUrlPath) {
 
 const server = http.createServer((req, res) => {
   let urlPath = decodeURIComponent(req.url.split('?')[0]);
-
-  // Serve oppen_works.html for the root URL
-  if (urlPath === '/' || urlPath === '/index.html') {
-    const oppenWorksPath = path.join(__dirname, 'oppen_works.html');
-    fs.readFile(oppenWorksPath, (err, data) => {
-      if (!err) {
-        res.writeHead(200, {
-          'Content-Type': 'text/html; charset=utf-8',
-          'Cache-Control': 'no-cache',
-        });
-        res.end(data);
-      } else {
-        // Fallback to original index.html
-        fs.readFile(path.join(ROOT_DIR, 'index.html'), (err2, data2) => {
-          if (!err2) {
-            res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-            res.end(data2);
-          } else {
-            res.writeHead(404);
-            res.end('Not Found');
-          }
-        });
-      }
-    });
-    return;
+  if (urlPath === '/') {
+    urlPath = '/index.html';
   }
 
   const filePath = path.join(ROOT_DIR, urlPath);
@@ -223,23 +200,15 @@ const server = http.createServer((req, res) => {
       }
     }
 
-    // Standard 404 - If not an asset, fallback to oppen_works.html for SPA routing
+    // Standard 404 - If not an asset, fallback to index.html for SPA routing
     if (!path.basename(urlPath).includes('.')) {
-      const oppenWorksPath = path.join(__dirname, 'oppen_works.html');
-      fs.readFile(oppenWorksPath, (err, data) => {
+      fs.readFile(path.join(ROOT_DIR, 'index.html'), (err, data) => {
         if (!err) {
           res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
           res.end(data);
         } else {
-          fs.readFile(path.join(ROOT_DIR, 'index.html'), (err2, data2) => {
-            if (!err2) {
-              res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-              res.end(data2);
-            } else {
-              res.writeHead(404);
-              res.end('Not Found');
-            }
-          });
+          res.writeHead(404);
+          res.end('Not Found');
         }
       });
       return;

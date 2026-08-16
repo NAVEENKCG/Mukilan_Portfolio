@@ -11,15 +11,23 @@ html = html.replace(/oppenheim/g, 'mukilan');
 html = html.replace(/OPPENHEIM/g, 'MUKILAN');
 
 // 2. Replace the SVG logos
-// The original logo has width="440" height="103" viewBox="0 0 440 103"
-const logoRegex = /<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg" xmlns:xlink="http:\/\/www\.w3\.org\/1999\/xlink" width="440" height="103" viewBox="0 0 440 103">[\s\S]*?<\/svg>/g;
+const headerLogoRegex = /<header class="mobile-header">[\s\S]*?<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg" xmlns:xlink="http:\/\/www\.w3\.org\/1999\/xlink" width="440" height="103" viewBox="0 0 440 103">[\s\S]*?<\/svg>/;
+const footerLogoRegex = /<footer class="main-footer">[\s\S]*?<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg" xmlns:xlink="http:\/\/www\.w3\.org\/1999\/xlink" width="440" height="103" viewBox="0 0 440 103">[\s\S]*?<\/svg>/;
 
-const newLogo = `<svg xmlns="http://www.w3.org/2000/svg" width="440" height="103" viewBox="0 0 440 103">
-  <text x="0" y="50" font-family="'Plus Jakarta Sans', sans-serif" font-size="28" font-weight="800" fill="currentColor" letter-spacing="-0.03em">MUKILAN</text>
-  <text x="0" y="85" font-family="'Plus Jakarta Sans', sans-serif" font-size="28" font-weight="800" fill="currentColor" letter-spacing="-0.03em">ARCHITECTURE</text>
-</svg>`;
+const newHeaderLogo = `<header class="mobile-header">
+  <a href="/"><svg xmlns="http://www.w3.org/2000/svg" width="440" height="103" viewBox="0 0 440 103">
+    <text x="0" y="50" font-family="'Plus Jakarta Sans', sans-serif" font-size="28" font-weight="800" fill="currentColor" letter-spacing="-0.03em">MUKILAN</text>
+    <text x="0" y="85" font-family="'Plus Jakarta Sans', sans-serif" font-size="28" font-weight="800" fill="currentColor" letter-spacing="-0.03em">ARCHITECTURE</text>
+  </svg></a>`;
 
-html = html.replace(logoRegex, newLogo);
+const newFooterLogo = `<footer class="main-footer">
+  <a href="/"><svg xmlns="http://www.w3.org/2000/svg" width="440" height="103" viewBox="0 0 440 103">
+    <text x="440" y="50" font-family="'Plus Jakarta Sans', sans-serif" font-size="28" font-weight="800" fill="currentColor" letter-spacing="-0.03em" text-anchor="end">MUKILAN</text>
+    <text x="440" y="85" font-family="'Plus Jakarta Sans', sans-serif" font-size="28" font-weight="800" fill="currentColor" letter-spacing="-0.03em" text-anchor="end">ARCHITECTURE</text>
+  </svg></a>`;
+
+html = html.replace(headerLogoRegex, newHeaderLogo);
+html = html.replace(footerLogoRegex, newFooterLogo);
 
 // 3. Replace Meta description with Resume Bio
 const oldDesc = "Working out of Miami and Basel, mukilan crafts buildings by carefully balancing the needs of the individual and the attributes of the location.";
@@ -51,6 +59,11 @@ const resumeOverlay = `
     cursor: pointer;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.10);
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @media screen and (min-width: 769px) {
+    #mukilan-resume-btn {
+      right: calc(20vw + 40px);
+    }
   }
   #mukilan-resume-btn:hover {
     background: rgba(255, 255, 255, 0.07);

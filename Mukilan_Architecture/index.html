@@ -4,7 +4,7 @@
 	
 
 <!DOCTYPE html>
-<html class='no-js' lang='en'>
+<html class='no-js font-loaded' lang='en'>
   <head>
     <meta content='text/html;charset=utf-8' http-equiv='Content-Type'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
@@ -76,7 +76,7 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
            Keep them for sizing but make them invisible so background images show through. */
         picture img { opacity: 0 !important; }
         /* Ensure picture backgrounds are visible and cover the area */
-        picture { background-size: contain !important; }
+        picture { background-size: cover !important; }
       </style>
       
 
@@ -110,95 +110,6 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Outfit:wght@400;500&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700,800&display=swap" rel="stylesheet">
-
-
-<style id="custom-animations">
-  /* Animation Easing Constants */
-  :root {
-    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-    --spring-snappy: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    --accent: #d4af37;
-  }
-
-  /* Grid Item Animations */
-  .worklist__item {
-    transition: transform 0.6s var(--ease-out-expo), opacity 0.6s var(--ease-out-expo);
-    will-change: transform, opacity;
-    animation: staggerReveal 0.8s var(--ease-out-expo) forwards;
-    opacity: 0;
-    transform: translateY(40px);
-    cursor: pointer;
-  }
-  
-  /* Staggered Delay - up to 20 items */
-  .worklist__item:nth-child(1) { animation-delay: 0.1s; }
-  .worklist__item:nth-child(2) { animation-delay: 0.2s; }
-  .worklist__item:nth-child(3) { animation-delay: 0.3s; }
-  .worklist__item:nth-child(4) { animation-delay: 0.4s; }
-  .worklist__item:nth-child(5) { animation-delay: 0.5s; }
-  .worklist__item:nth-child(6) { animation-delay: 0.6s; }
-  .worklist__item:nth-child(7) { animation-delay: 0.7s; }
-  .worklist__item:nth-child(8) { animation-delay: 0.8s; }
-  .worklist__item:nth-child(9) { animation-delay: 0.9s; }
-  .worklist__item:nth-child(10) { animation-delay: 1.0s; }
-  .worklist__item:nth-child(1n+11) { animation-delay: 1.1s; } /* Fallback */
-
-  @keyframes staggerReveal {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Hover & Tap Animations */
-  .worklist__item:hover {
-    transform: translateY(-8px) scale(1.02) !important;
-  }
-  .worklist__item:active {
-    transform: scale(0.96) !important;
-  }
-
-  /* Fake Details Reveal */
-  .work__details {
-    opacity: 0;
-    max-height: 0;
-    overflow: hidden;
-    transform: translateY(10px);
-    transition: all 0.5s var(--ease-out-expo);
-    will-change: transform, opacity, max-height;
-    margin-top: 10px;
-    font-family: 'Outfit', sans-serif;
-  }
-  .work__details .work__meta {
-    font-size: 0.85rem;
-    color: var(--accent);
-    font-weight: 500;
-    margin-bottom: 4px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-  .work__details .work__desc {
-    font-size: 0.9rem;
-    color: rgba(255,255,255,0.7);
-    line-height: 1.4;
-  }
-
-  .worklist__item:hover .work__details {
-    opacity: 1;
-    max-height: 150px;
-    transform: translateY(0);
-    margin-top: 15px;
-  }
-  
-  /* Make sure the text on the cards stands out */
-  .work__title {
-    transition: transform 0.4s var(--ease-out-expo);
-  }
-  .worklist__item:hover .work__title {
-    transform: translateX(4px);
-    color: var(--accent);
-  }
-</style>
 
 </head>
 
@@ -237,7 +148,7 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
   <text x="0" y="85" font-family="'Plus Jakarta Sans', sans-serif" font-size="28" font-weight="800" fill="currentColor" letter-spacing="-0.03em">ARCHITECTURE</text>
 </svg></a>
         </header>
-        <nav class='main-header'>
+        <nav class='main-header menu-open'>
 
           <div class="toggle-menu">
             <button class="toggle-menu__inner">
@@ -313,7 +224,7 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
        
       
       <main id='content' class='content' role='main'>
-        <nav class="panel panel--index active">
+        <nav class="panel panel--index">
           <div class="scroll-container">
             <div class="worklist__data--ajax"></div>
             <div class="worklist__data">
@@ -350,14 +261,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/ayla-golf-clubhouse/">
             Ayla Golf Clubhouse
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="private-homes" data-title="Bal Harbour House" data-sort="20">
@@ -390,14 +295,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/bal-harbour-house/">
             Bal Harbour House
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="hospitality,masterplanning" data-title="Bali Beach Resort" data-sort="21">
@@ -430,14 +329,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/bali-beach-resort/">
             Bali Beach Resort
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="commercial" data-title="Besa Museum" data-sort="25">
@@ -470,14 +363,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/besa-museum/">
             Besa Museum
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="public-works" data-title="College of Europe" data-sort="36">
@@ -510,14 +397,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/college-of-europe/">
             College of Europe
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="hospitality,masterplanning" data-title="Desert Rock" data-sort="44">
@@ -550,14 +431,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/desert-rock/">
             Desert Rock
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="private-homes" data-title="Edelmann Residence" data-sort="50">
@@ -590,14 +465,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/edelmann-residence/">
             Edelmann Residence
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="hospitality" data-title="Emiliano Hotel" data-sort="53">
@@ -630,14 +499,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/emiliano-hotel/">
             Emiliano Hotel
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="commercial" data-title="Enea Headquarters" data-sort="54">
@@ -670,14 +533,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/enea-headquarters/">
             Enea Headquarters
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="private-homes" data-title="Escondido Beach" data-sort="55">
@@ -710,14 +567,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/escondido-beach/">
             Escondido Beach
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="hospitality" data-title="Forte dei Marmi" data-sort="61">
@@ -750,14 +601,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/forte-dei-marmi/">
             Forte dei Marmi
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="commercial" data-title="GLF Headquarters" data-sort="63">
@@ -790,14 +635,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/glf-headquarters/">
             GLF Headquarters
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="private-homes" data-title="House in a Jungle" data-sort="70">
@@ -830,14 +669,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/house-in-a-jungle/">
             House in a Jungle
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="private-homes" data-title="House on a Dune" data-sort="71">
@@ -870,14 +703,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/house-on-a-dune/">
             House on a Dune
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="hospitality,masterplanning" data-title="Java Golf Resort" data-sort="83">
@@ -910,14 +737,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/java-golf-resort/">
             Java Golf Resort
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="hospitality,multi-residential" data-title="Jewel" data-sort="84">
@@ -950,14 +771,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/jewel/">
             Jewel
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="commercial" data-title="Kirchplatz Office" data-sort="86">
@@ -990,14 +805,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/kirchplatz-office/">
             Kirchplatz Office
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="private-homes" data-title="Kirchplatz Residence" data-sort="87">
@@ -1030,14 +839,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/kirchplatz-residence/">
             Kirchplatz Residence
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="private-homes" data-title="L.A. Villa" data-sort="89">
@@ -1070,14 +873,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/la-villa/">
             L.A. Villa
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="private-homes" data-title="La Muna" data-sort="90">
@@ -1110,14 +907,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/la-muna/">
             La Muna
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="hospitality,masterplanning" data-title="Lago Maggiore Retreat" data-sort="92">
@@ -1150,14 +941,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/lago-maggiore-retreat/">
             Lago Maggiore Retreat
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="multi-residential" data-title="Leimenstrasse Apartments" data-sort="94">
@@ -1190,14 +975,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/leimenstrasse-apartments/">
             Leimenstrasse Apartments
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="private-homes" data-title="Lundy House" data-sort="96">
@@ -1230,14 +1009,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/lundy-house/">
             Lundy House
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="multi-residential,masterplanning" data-title="Metropica" data-sort="102">
@@ -1270,14 +1043,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/metropica/">
             Metropica
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="private-homes" data-title="Miami Beach Penthouse" data-sort="103">
@@ -1310,14 +1077,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/miami-beach-penthouse/">
             Miami Beach Penthouse
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="public-works" data-title="Muttenz Water Purification Plant" data-sort="108">
@@ -1350,14 +1111,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/muttenz-water-purification-plant/">
             Muttenz Water Purification Plant
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="commercial" data-title="Net Metropolis" data-sort="110">
@@ -1390,14 +1145,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/net-metropolis/">
             Net Metropolis
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="hospitality,masterplanning" data-title="Sacred Reef Research Facility &amp; Resort" data-sort="135">
@@ -1430,14 +1179,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/sacred-reef-research-facility-resort/">
             Sacred Reef Research Facility &amp; Resort
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="hospitality,masterplanning" data-title="San Silencio" data-sort="136">
@@ -1470,14 +1213,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/san-silencio/">
             San Silencio
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="private-homes" data-title="Silva Penthouse" data-sort="139">
@@ -1510,14 +1247,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/silva-penthouse/">
             Silva Penthouse
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="commercial" data-title="Star Metals Offices" data-sort="150">
@@ -1550,14 +1281,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/star-metals-offices/">
             Star Metals Offices
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="multi-residential" data-title="Star Metals Residences" data-sort="151">
@@ -1590,14 +1315,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/star-metals-residences/">
             Star Metals Residences
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="multi-residential" data-title="Ten Museum Park" data-sort="156">
@@ -1630,14 +1349,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/ten-museum-park/">
             Ten Museum Park
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="private-homes" data-title="Villa Allegra" data-sort="169">
@@ -1670,14 +1383,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/villa-allegra/">
             Villa Allegra
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="private-homes" data-title="Villa Kronbühl" data-sort="172">
@@ -1710,14 +1417,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/villa-kronbuhl/">
             Villa Kronbühl
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
       <div class="worklist__item" data-featured="true" data-categories="private-homes" data-title="Villa Lake Zürich" data-sort="173">
@@ -1750,14 +1451,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
         <h3 class="work__title">
           <a class="" href="/works/villa-lake-zurich/">
             Villa Lake Zürich
-          
-</a>
-</h3>
-<div class="work__details">
-  <p class="work__meta">Location: <span class="fake-location">Global</span> | Year: <span class="fake-year">2026</span></p>
-  <p class="work__desc">A conceptual design focusing on experience-driven environments and sustainable integration.</p>
-</div>
-
+          </a>
+        </h3>
       </div>
   
 
@@ -1806,8 +1501,8 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
       
       <footer class="main-footer">
         <a href="/"><svg xmlns="http://www.w3.org/2000/svg" width="440" height="103" viewBox="0 0 440 103">
-  <text x="0" y="50" font-family="'Plus Jakarta Sans', sans-serif" font-size="28" font-weight="800" fill="currentColor" letter-spacing="-0.03em">MUKILAN</text>
-  <text x="0" y="85" font-family="'Plus Jakarta Sans', sans-serif" font-size="28" font-weight="800" fill="currentColor" letter-spacing="-0.03em">ARCHITECTURE</text>
+  <text x="440" y="50" font-family="'Plus Jakarta Sans', sans-serif" font-size="28" font-weight="800" fill="currentColor" letter-spacing="-0.03em" text-anchor="end">MUKILAN</text>
+  <text x="440" y="85" font-family="'Plus Jakarta Sans', sans-serif" font-size="28" font-weight="800" fill="currentColor" letter-spacing="-0.03em" text-anchor="end">ARCHITECTURE</text>
 </svg></a>
       </footer>
       
@@ -1838,6 +1533,11 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
     cursor: pointer;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.10);
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @media screen and (min-width: 769px) {
+    #mukilan-resume-btn {
+      right: calc(20vw + 40px);
+    }
   }
   #mukilan-resume-btn:hover {
     background: rgba(255, 255, 255, 0.07);
@@ -1960,33 +1660,32 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
 
 <div id="mukilan-resume-modal">
   <button class="close-btn" onclick="document.getElementById('mukilan-resume-modal').classList.remove('active')">&times;</button>
-  
   <div class="resume-card">
     <h1>Mukilan E V</h1>
-    <h2>Executive Architect @ Pinnacle FutureBuild Pvt. Limited<br>BIM Architect | Conceptual designer | Designing Experience-Driven Environments that Connect People with Nature<br>Barjora, West Bengal, India</h2>
+    <h2>Executive Architect @ Pinnacle FutureBuild Pvt. Limited<br>BIM Architect | Conceptual Designer | Experience-Driven Environments</h2>
     
     <div class="resume-section">
       <h3>Experience</h3>
       <div class="resume-item">
         <h4>Executive Architect</h4>
-        <div class="meta">Pinnacle | July 2026 - Present (2 months) | Durgapur</div>
+        <div class="meta">Pinnacle | July 2026 - Present | Durgapur, India</div>
       </div>
       <div class="resume-item">
         <h4>Research Advisory</h4>
-        <div class="meta">NLC India Limited | December 2025 - December 2025 (1 month) | Neyveli Township</div>
+        <div class="meta">NLC India Limited | Dec 2025 | Neyveli Township</div>
         <p>Worked on the design and development of the New Guest House near LSN Township, Barsingsar, contributing to concept generation, site-responsive planning and sustainable design integration. Developed architectural plans, spatial layouts and detailed design strategies while incorporating net-zero and nature-integrated design principles to enhance environmental and user performance.</p>
       </div>
       <div class="resume-item">
         <h4>Intern Architect</h4>
-        <div class="meta">Mindspace Architects | December 2024 - June 2025 (7 months) | Bengaluru, Karnataka, India</div>
+        <div class="meta">Mindspace Architects | Dec 2024 - June 2025 | Bengaluru, India</div>
       </div>
       <div class="resume-item">
         <h4>Architectural Intern</h4>
-        <div class="meta">LP Builders | June 2024 - July 2024 (2 months) | Vadalur, Tamil Nadu, India</div>
+        <div class="meta">LP Builders | June 2024 - July 2024 | Vadalur, India</div>
       </div>
       <div class="resume-item">
         <h4>Architectural Intern</h4>
-        <div class="meta">L&T Construction | December 2023 - January 2024 (2 months) | Manapakkam Chennai Tamilnadu</div>
+        <div class="meta">L&T Construction | Dec 2023 - Jan 2024 | Chennai, India</div>
       </div>
     </div>
     
@@ -1994,27 +1693,22 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
       <h3>Education</h3>
       <div class="resume-item">
         <h4>National Institute of Technology, Tiruchirappalli</h4>
-        <div class="meta">Bachelor of Architecture - BArch, Architecture &middot; (December 2021 - May 2026)</div>
+        <div class="meta">Bachelor of Architecture - BArch | Dec 2021 - May 2026</div>
       </div>
       <div class="resume-item">
-        <h4>Jayapriya Vidyalaya Senior Secondary School (CBSE), Virudhachalam</h4>
-        <div class="meta">Computer Science &middot; (July 2018 - March 2020)</div>
-      </div>
-      <div class="resume-item">
-        <h4>Jawahar Higher Secondary School CBSE Neyveli</h4>
-        <div class="meta">&middot; (July 2008 - March 2018)</div>
+        <h4>Jayapriya Vidyalaya Senior Secondary School (CBSE)</h4>
+        <div class="meta">Computer Science | July 2018 - March 2020</div>
       </div>
     </div>
     
     <div class="resume-section">
       <h3>Top Skills</h3>
       <div class="resume-item">
-        <p>Concept Development &bull; User Experience Design (UED) &bull; Rhinoceros</p>
+        <p>Concept Development • User Experience Design (UED) • Rhinoceros</p>
       </div>
     </div>
     
   </div>
-
 </div>
 
 </body>
