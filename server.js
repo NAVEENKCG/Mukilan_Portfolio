@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const PORT = 3000;
-const ROOT_DIR = path.join(__dirname, 'oppenoffice.com');
+const ROOT_DIR = path.join(__dirname, 'Mukilan_Architecture');
 
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -102,9 +102,9 @@ function findFileByHash(requestedBasename) {
 
 function getMediaFallback(requestedUrlPath) {
   if (mediaImages.length === 0) return null;
-  
+
   const basename = path.basename(requestedUrlPath).toLowerCase();
-  
+
   // Try to find an image with a matching base name (ignore size suffixes)
   // e.g. "Emiliano_Homepage_Desktop.jpg.3600x2394..." -> "emiliano_homepage_desktop"
   let cleanName = basename.split('.')[0];
@@ -112,7 +112,7 @@ function getMediaFallback(requestedUrlPath) {
     const nameMatch = mediaImages.find(img => path.basename(img).toLowerCase().includes(cleanName));
     if (nameMatch) return nameMatch;
   }
-  
+
   // Try to find an image for the same project/folder
   const parts = requestedUrlPath.split('/');
   if (parts.length > 2) {
@@ -122,7 +122,7 @@ function getMediaFallback(requestedUrlPath) {
       if (folderMatch) return folderMatch;
     }
   }
-  
+
   // Pick a random image deterministically based on the URL so it's consistent
   const hash = requestedUrlPath.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
   return mediaImages[hash % mediaImages.length];
@@ -130,8 +130,31 @@ function getMediaFallback(requestedUrlPath) {
 
 const server = http.createServer((req, res) => {
   let urlPath = decodeURIComponent(req.url.split('?')[0]);
-  if (urlPath === '/') {
-    urlPath = '/index.html';
+
+  // Serve oppen_works.html for the root URL
+  if (urlPath === '/' || urlPath === '/index.html') {
+    const oppenWorksPath = path.join(__dirname, 'oppen_works.html');
+    fs.readFile(oppenWorksPath, (err, data) => {
+      if (!err) {
+        res.writeHead(200, {
+          'Content-Type': 'text/html; charset=utf-8',
+          'Cache-Control': 'no-cache',
+        });
+        res.end(data);
+      } else {
+        // Fallback to original index.html
+        fs.readFile(path.join(ROOT_DIR, 'index.html'), (err2, data2) => {
+          if (!err2) {
+            res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+            res.end(data2);
+          } else {
+            res.writeHead(404);
+            res.end('Not Found');
+          }
+        });
+      }
+    });
+    return;
   }
 
   const filePath = path.join(ROOT_DIR, urlPath);
@@ -144,7 +167,7 @@ const server = http.createServer((req, res) => {
   if (urlPath.startsWith('/static/dist/')) {
     const basename = path.basename(urlPath);
     const cachedPath = findFileByHash(basename);
-    
+
     if (cachedPath) {
       fs.readFile(cachedPath, (err, data) => {
         if (err) {
@@ -200,20 +223,28 @@ const server = http.createServer((req, res) => {
       }
     }
 
-    // Standard 404 - If not an asset, fallback to index.html for SPA routing
+    // Standard 404 - If not an asset, fallback to oppen_works.html for SPA routing
     if (!path.basename(urlPath).includes('.')) {
-      fs.readFile(path.join(ROOT_DIR, 'index.html'), (err, data) => {
+      const oppenWorksPath = path.join(__dirname, 'oppen_works.html');
+      fs.readFile(oppenWorksPath, (err, data) => {
         if (!err) {
           res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
           res.end(data);
         } else {
-          res.writeHead(404);
-          res.end('Not Found');
+          fs.readFile(path.join(ROOT_DIR, 'index.html'), (err2, data2) => {
+            if (!err2) {
+              res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+              res.end(data2);
+            } else {
+              res.writeHead(404);
+              res.end('Not Found');
+            }
+          });
         }
       });
       return;
     }
-    
+
     if (!path.basename(urlPath).includes('favicon')) {
       console.log(`[404] ${urlPath}`);
     }

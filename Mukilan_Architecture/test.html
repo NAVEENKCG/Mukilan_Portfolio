@@ -67,16 +67,6 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
 
 </style>
       <style>
-        /* === LOCAL OVERRIDES: Make everything visible without full JS page-loader === */
-        h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.panel { opacity: 1 !important; }
-        .loading--start { opacity: 1 !important; }
-        /* Ensure the wrap is not clipped on desktop */
-        #wrap { max-height: none !important; overflow-y: visible !important; }
-        /* The img elements have empty SVG placeholders as src and broken srcset references.
-           Keep them for sizing but make them invisible so background images show through. */
-        picture img { opacity: 0 !important; }
-        /* Ensure picture backgrounds are visible and cover the area */
-        picture { background-size: contain !important; }
       </style>
       
 
@@ -313,7 +303,7 @@ h1,h2,h3,h4,h5,h6,p,li,.site-page,.main-header,.mobile-header,.main-footer,.pane
        
       
       <main id='content' class='content' role='main'>
-        <nav class="panel panel--index active">
+        <nav class="panel panel--index">
           <div class="scroll-container">
             <div class="worklist__data--ajax"></div>
             <div class="worklist__data">
